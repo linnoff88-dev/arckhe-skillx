@@ -1,0 +1,1030 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillX | Guia Completo de Uso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --fundo-1: #fff7ef;
+      --fundo-2: #ecf7ff;
+      --texto: #162436;
+      --texto-suave: #4c6178;
+      --laranja: #f26430;
+      --azul: #0087cc;
+      --verde: #1f9d7a;
+      --linha-laranja: #ffd6c6;
+      --linha-azul: #cfe9f8;
+      --painel: rgba(255, 255, 255, 0.9);
+      --sombra: 0 16px 40px rgba(15, 34, 54, 0.11);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+      color: var(--texto);
+      background:
+        radial-gradient(circle at 8% 0%, #ffe7d8 0%, transparent 38%),
+        radial-gradient(circle at 90% 6%, #d7eefe 0%, transparent 42%),
+        linear-gradient(180deg, var(--fundo-1) 0%, var(--fundo-2) 100%);
+      min-height: 100vh;
+      line-height: 1.55;
+    }
+
+    .aura {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(55px);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .aura-1 {
+      width: 340px;
+      height: 340px;
+      top: 6%;
+      left: -120px;
+      background: #ffc9b0;
+      animation: orbitaA 9s ease-in-out infinite alternate;
+    }
+
+    .aura-2 {
+      width: 360px;
+      height: 360px;
+      right: -140px;
+      bottom: 4%;
+      background: #bde8ff;
+      animation: orbitaB 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes orbitaA {
+      from { transform: translateY(-10px); }
+      to { transform: translateY(18px); }
+    }
+
+    @keyframes orbitaB {
+      from { transform: translateY(12px); }
+      to { transform: translateY(-14px); }
+    }
+
+    .page {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+      padding: 32px 0 64px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: revelar 0.7s ease forwards;
+    }
+
+    .reveal:nth-of-type(2) { animation-delay: 0.08s; }
+    .reveal:nth-of-type(3) { animation-delay: 0.16s; }
+    .reveal:nth-of-type(4) { animation-delay: 0.24s; }
+    .reveal:nth-of-type(5) { animation-delay: 0.32s; }
+    .reveal:nth-of-type(6) { animation-delay: 0.4s; }
+
+    @keyframes revelar {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      background: linear-gradient(132deg, #ffffff 0%, #fff6ef 100%);
+      border: 1px solid var(--linha-laranja);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--sombra);
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -80px;
+      top: -100px;
+      background: radial-gradient(circle, rgba(242, 100, 48, 0.3) 0%, transparent 70%);
+    }
+
+    .etiqueta {
+      display: inline-block;
+      background: #fff2ea;
+      border: 1px solid #f7b9a1;
+      color: #b4491f;
+      padding: 7px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 3.9vw, 3.2rem);
+      line-height: 1.05;
+      max-width: 16ch;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 70ch;
+      font-family: "Source Serif 4", Georgia, serif;
+      color: #2d425a;
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+    }
+
+    .hero-metricas {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 760px;
+    }
+
+    .metrica {
+      background: #ffffff;
+      border: 1px solid #f5d7c9;
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+    }
+
+    .metrica strong {
+      display: block;
+      font-size: 1.2rem;
+      color: #0f2b45;
+      margin-bottom: 2px;
+    }
+
+    .metrica span {
+      color: var(--texto-suave);
+      font-size: 0.92rem;
+    }
+
+    .acoes {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.93rem;
+      border-radius: 999px;
+      padding: 10px 15px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .btn-primario {
+      color: #ffffff;
+      background: var(--laranja);
+      border: 1px solid #d85223;
+    }
+
+    .btn-secundario {
+      color: #0f628f;
+      background: #eef8ff;
+      border: 1px solid #bce3f8;
+    }
+
+    .sumario {
+      background: #ffffff;
+      border: 1px solid var(--linha-azul);
+      border-radius: var(--radius-md);
+      box-shadow: var(--sombra);
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .sumario h2 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .sumario-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sumario-links a {
+      text-decoration: none;
+      color: #114165;
+      background: #f2f9ff;
+      border: 1px solid #cee7f7;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .painel {
+      background: var(--painel);
+      border: 1px solid #d8e9f5;
+      border-radius: var(--radius-md);
+      box-shadow: var(--sombra);
+      padding: 24px;
+      margin-bottom: 18px;
+      backdrop-filter: blur(4px);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .intro {
+      margin: 0 0 12px;
+      color: #324962;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 1.05rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .box {
+      background: #ffffff;
+      border: 1px solid #d9e8f4;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .box::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--laranja), var(--azul));
+    }
+
+    .box p,
+    .box li {
+      margin: 0;
+      color: var(--texto-suave);
+      font-family: "Source Serif 4", Georgia, serif;
+    }
+
+    .box ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .passos {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .passos li {
+      background: #ffffff;
+      border: 1px solid #d8e8f5;
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      background: linear-gradient(165deg, var(--laranja), #ff8b61);
+      margin-top: 1px;
+    }
+
+    .passos p {
+      margin: 0;
+      color: var(--texto-suave);
+      font-family: "Source Serif 4", Georgia, serif;
+    }
+
+    .code {
+      margin-top: 12px;
+      background: #0f1f31;
+      color: #e7f2ff;
+      border-radius: var(--radius-sm);
+      border: 1px solid #253c55;
+      padding: 14px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .code code {
+      font-family: Consolas, "Fira Code", Menlo, monospace;
+      white-space: pre;
+    }
+
+    .exemplos {
+      display: grid;
+      gap: 12px;
+    }
+
+    .exemplo {
+      background: #ffffff;
+      border: 1px solid #d8e8f5;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+
+    .exemplo .topo {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .badge {
+      font-size: 0.77rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid;
+    }
+
+    .badge-docs {
+      color: #1a5f8a;
+      border-color: #b9ddf2;
+      background: #edf8ff;
+    }
+
+    .badge-dev {
+      color: #7c4f12;
+      border-color: #f6d7ad;
+      background: #fff7e8;
+    }
+
+    .badge-comms {
+      color: #1b6f57;
+      border-color: #bde9dc;
+      background: #eefff8;
+    }
+
+    .exemplo p {
+      margin: 0 0 10px;
+      color: var(--texto-suave);
+      font-family: "Source Serif 4", Georgia, serif;
+    }
+
+    .prompt {
+      background: #f6fbff;
+      border: 1px solid #d6eaf8;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 8px;
+      color: #224363;
+      font-size: 0.93rem;
+    }
+
+    .resultado {
+      color: #1f6e58;
+      background: #f1fff9;
+      border: 1px solid #caefdf;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 0.92rem;
+    }
+
+    .comparacao {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .check {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .check li {
+      background: #ffffff;
+      border: 1px solid #d8e8f5;
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: var(--texto-suave);
+      font-family: "Source Serif 4", Georgia, serif;
+    }
+
+    .check li::before {
+      content: "✔";
+      color: var(--verde);
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .check.erros li::before {
+      content: "⚠";
+      color: #d66a2c;
+    }
+
+    .tabela {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #d8e8f5;
+    }
+
+    .tabela th,
+    .tabela td {
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid #e7f1f8;
+      vertical-align: top;
+      font-family: "Source Serif 4", Georgia, serif;
+      color: #334d66;
+    }
+
+    .tabela th {
+      font-family: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+      color: #12314f;
+      background: #f1f9ff;
+      font-size: 0.9rem;
+    }
+
+    details {
+      border: 1px solid #d8e8f5;
+      border-radius: 10px;
+      background: #ffffff;
+      padding: 10px 12px;
+    }
+
+    details + details {
+      margin-top: 8px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #173a59;
+    }
+
+    details p {
+      margin: 8px 0 0;
+      color: var(--texto-suave);
+      font-family: "Source Serif 4", Georgia, serif;
+    }
+
+    .cta {
+      border: 1px solid #f8c4b0;
+      background: linear-gradient(130deg, #fff7f1 0%, #edf8ff 100%);
+    }
+
+    .cta p {
+      margin: 0;
+      color: #28435d;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      color: #48617a;
+      font-size: 0.9rem;
+      text-align: center;
+      padding-top: 4px;
+    }
+
+    @media (max-width: 980px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-metricas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero,
+      .painel,
+      .sumario {
+        padding: 18px;
+      }
+
+      .grid-2,
+      .grid-3,
+      .comparacao,
+      .hero-metricas {
+        grid-template-columns: 1fr;
+      }
+
+      .passos li {
+        grid-template-columns: 1fr;
+      }
+
+      .tabela th,
+      .tabela td {
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="aura aura-1" aria-hidden="true"></div>
+  <div class="aura aura-2" aria-hidden="true"></div>
+
+  <main class="page">
+    <header class="hero reveal" id="topo">
+      <span class="etiqueta">Guia Completo</span>
+      <h1>Como usar este projeto na prática, com vários exemplos reais.</h1>
+      <p>
+        O SkillX é um repositório de skills para Claude. Esta página foi criada para servir como manual direto de uso:
+        você encontra visão geral, configuração inicial, fluxo recomendado, exemplos prontos de prompts e um roteiro
+        completo para criar sua própria skill do zero.
+      </p>
+
+      <div class="hero-metricas">
+        <div class="metrica">
+          <strong>20+</strong>
+          <span>skills de referência</span>
+        </div>
+        <div class="metrica">
+          <strong>8 blocos</strong>
+          <span>de aprendizado prático</span>
+        </div>
+        <div class="metrica">
+          <strong>10 exemplos</strong>
+          <span>de prompts e resultados</span>
+        </div>
+      </div>
+
+      <div class="acoes">
+        <a class="btn btn-primario" href="skills/">Ver pasta de skills</a>
+        <a class="btn btn-secundario" href="https://github.com/inematds/skillx">Abrir repositório SkillX</a>
+      </div>
+    </header>
+
+    <nav class="sumario reveal">
+      <h2>Sumário rápido</h2>
+      <div class="sumario-links">
+        <a href="#visao-geral">Visão geral</a>
+        <a href="#primeiros-passos">Primeiros passos</a>
+        <a href="#ambientes">Uso por ambiente</a>
+        <a href="#exemplos">Exemplos práticos</a>
+        <a href="#criacao-skill">Criando sua skill</a>
+        <a href="#boas-praticas">Boas práticas</a>
+        <a href="#problemas">Problemas comuns</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </nav>
+
+    <section class="painel reveal" id="visao-geral">
+      <h2>1) Visão geral do projeto</h2>
+      <p class="intro">
+        Este repositório organiza habilidades em formato padronizado para tornar tarefas especializadas mais rápidas,
+        consistentes e reutilizáveis. Cada skill tem instruções claras em <code>SKILL.md</code>, podendo incluir scripts,
+        templates e referências.
+      </p>
+
+      <div class="grid-3">
+        <article class="box">
+          <h3><code>skills/</code></h3>
+          <p>
+            Conjunto principal de skills de exemplo: design, documentação, desenvolvimento, testes, comunicação,
+            automações e outros cenários.
+          </p>
+        </article>
+        <article class="box">
+          <h3><code>spec/</code></h3>
+          <p>
+            Especificação do padrão de Agent Skills. Use esta pasta para validar estrutura, nomes, frontmatter e
+            organização de conteúdo.
+          </p>
+        </article>
+        <article class="box">
+          <h3><code>template/</code></h3>
+          <p>
+            Modelo base para iniciar uma nova skill sem começar do zero. Ideal para padronizar criação em equipe.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="painel reveal" id="primeiros-passos">
+      <h2>2) Primeiros passos</h2>
+      <p class="intro">
+        Sequência recomendada para começar sem erro, mesmo se você estiver usando skills pela primeira vez.
+      </p>
+
+      <ol class="passos">
+        <li>
+          <span class="num">1</span>
+          <div>
+            <h3>Explore as skills existentes</h3>
+            <p>Abra a pasta <code>skills/</code> e escolha uma skill próxima do seu objetivo atual.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">2</span>
+          <div>
+            <h3>Leia o <code>SKILL.md</code> com atenção</h3>
+            <p>Verifique quando usar, limitações, exemplos e dependências antes de executar.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">3</span>
+          <div>
+            <h3>Teste com um caso pequeno</h3>
+            <p>Use um prompt simples primeiro, valide a saída e só depois escale para tarefas maiores.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">4</span>
+          <div>
+            <h3>Ajuste instruções quando necessário</h3>
+            <p>Se faltar contexto, complemente o prompt com dados reais do seu projeto.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="code"><code># Exemplo de fluxo no terminal
+# 1) entrar na raiz do projeto
+cd skills
+
+# 2) abrir README e escolher uma skill
+# 3) aplicar a skill em uma tarefa real
+# 4) iterar com melhorias baseadas no resultado</code></div>
+    </section>
+
+    <section class="painel reveal" id="ambientes">
+      <h2>3) Como usar em cada ambiente</h2>
+      <p class="intro">
+        O mesmo conceito de skill pode ser aplicado em Claude Code, Claude.ai e Claude API. O que muda é o formato de integração.
+      </p>
+
+      <div class="grid-3">
+        <article class="box">
+          <h3>Claude Code</h3>
+          <ul>
+            <li>Ideal para tarefas com arquivos e automação no projeto local.</li>
+            <li>Bom para refatoração, geração de documentação e testes.</li>
+            <li>Você pode chamar uma skill diretamente pelo nome durante a solicitação.</li>
+          </ul>
+        </article>
+        <article class="box">
+          <h3>Claude.ai</h3>
+          <ul>
+            <li>Uso rápido em interface web, ótimo para brainstorming e produção de textos.</li>
+            <li>Permite anexar conteúdos e aplicar skills com menos configuração.</li>
+            <li>Prático para validar ideias antes de automatizar.</li>
+          </ul>
+        </article>
+        <article class="box">
+          <h3>Claude API</h3>
+          <ul>
+            <li>Melhor opção para integração em produto ou fluxo interno.</li>
+            <li>Permite padronizar prompts e respostas por endpoint.</li>
+            <li>Útil para criar pipelines com qualidade previsível.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="painel reveal" id="exemplos">
+      <h2>4) Exemplos práticos (prompt + resultado esperado)</h2>
+      <p class="intro">
+        Abaixo estão exemplos diretos para você copiar, adaptar e usar. Cada cenário mostra o objetivo, um prompt inicial e o tipo de saída que você deve esperar.
+      </p>
+
+      <div class="exemplos">
+        <article class="exemplo">
+          <div class="topo">
+            <h3>Exemplo 1: Extrair campos de formulário de PDF</h3>
+            <span class="badge badge-docs">Documentos</span>
+          </div>
+          <p>Objetivo: identificar todos os campos preenchíveis em um contrato PDF.</p>
+          <div class="prompt"><strong>Prompt:</strong> "Use a skill de PDF e extraia todos os campos do arquivo contrato.pdf, incluindo nome do campo, tipo e se é obrigatório."</div>
+          <div class="resultado"><strong>Resultado esperado:</strong> lista estruturada dos campos e um resumo de inconsistências no formulário.</div>
+        </article>
+
+        <article class="exemplo">
+          <div class="topo">
+            <h3>Exemplo 2: Gerar apresentação a partir de um briefing</h3>
+            <span class="badge badge-docs">Documentos</span>
+          </div>
+          <p>Objetivo: transformar um texto bruto em estrutura de slides.</p>
+          <div class="prompt"><strong>Prompt:</strong> "Use a skill de PPTX para criar uma apresentação de 10 slides sobre onboarding de clientes, com tom executivo e foco em métricas."</div>
+          <div class="resultado"><strong>Resultado esperado:</strong> roteiro de slides com títulos, pontos-chave e sugestão de ordem narrativa.</div>
+        </article>
+
+        <article class="exemplo">
+          <div class="topo">
+            <h3>Exemplo 3: Revisar interface e sugerir melhorias</h3>
+            <span class="badge badge-dev">Desenvolvimento</span>
+          </div>
+          <p>Objetivo: levantar problemas de UX e consistência visual.</p>
+          <div class="prompt"><strong>Prompt:</strong> "Use a skill de frontend design para revisar a página de checkout e sugerir melhorias de legibilidade, hierarquia e contraste."</div>
+          <div class="resultado"><strong>Resultado esperado:</strong> lista priorizada de ajustes com justificativa e impacto estimado.</div>
+        </article>
+
+        <article class="exemplo">
+          <div class="topo">
+            <h3>Exemplo 4: Teste de fluxo crítico em aplicação web</h3>
+            <span class="badge badge-dev">Desenvolvimento</span>
+          </div>
+          <p>Objetivo: validar se cadastro e login funcionam de ponta a ponta.</p>
+          <div class="prompt"><strong>Prompt:</strong> "Use a skill de webapp testing para testar cadastro, confirmação e login. Gere relatório com passos, evidências e falhas encontradas."</div>
+          <div class="resultado"><strong>Resultado esperado:</strong> relatório reproduzível com status por etapa e sugestões de correção.</div>
+        </article>
+
+        <article class="exemplo">
+          <div class="topo">
+            <h3>Exemplo 5: Criar comunicado interno de mudança</h3>
+            <span class="badge badge-comms">Comunicação</span>
+          </div>
+          <p>Objetivo: comunicar mudança de processo sem ruído entre áreas.</p>
+          <div class="prompt"><strong>Prompt:</strong> "Use a skill de internal comms para redigir um comunicado sobre a nova política de deploy, com versão curta e versão completa."</div>
+          <div class="resultado"><strong>Resultado esperado:</strong> texto claro, tom apropriado e chamada para ação com prazos.</div>
+        </article>
+
+        <article class="exemplo">
+          <div class="topo">
+            <h3>Exemplo 6: Criar guia de tom de marca</h3>
+            <span class="badge badge-comms">Comunicação</span>
+          </div>
+          <p>Objetivo: padronizar escrita para marketing e suporte.</p>
+          <div class="prompt"><strong>Prompt:</strong> "Use a skill de brand guidelines e gere um mini guia com voz da marca, palavras preferidas e palavras a evitar."</div>
+          <div class="resultado"><strong>Resultado esperado:</strong> documento objetivo que facilita consistência em todos os canais.</div>
+        </article>
+
+        <article class="exemplo">
+          <div class="topo">
+            <h3>Exemplo 7: Converter notas em documento formal</h3>
+            <span class="badge badge-docs">Documentos</span>
+          </div>
+          <p>Objetivo: transformar rascunhos em documento pronto para revisão.</p>
+          <div class="prompt"><strong>Prompt:</strong> "Use a skill de DOCX para converter estas notas em proposta comercial com seções, resumo executivo e próximos passos."</div>
+          <div class="resultado"><strong>Resultado esperado:</strong> estrutura profissional com texto organizado e linguagem executiva.</div>
+        </article>
+
+        <article class="exemplo">
+          <div class="topo">
+            <h3>Exemplo 8: Planejar skill personalizada para o time</h3>
+            <span class="badge badge-dev">Desenvolvimento</span>
+          </div>
+          <p>Objetivo: criar padrão interno para tarefas repetitivas de engenharia.</p>
+          <div class="prompt"><strong>Prompt:</strong> "Use a skill-creator para desenhar uma skill de revisão de PR com checklist, riscos e padrão de comentário."</div>
+          <div class="resultado"><strong>Resultado esperado:</strong> escopo da skill, template inicial e fluxo de validação.</div>
+        </article>
+
+        <article class="exemplo">
+          <div class="topo">
+            <h3>Exemplo 9: Geração de skill para MCP</h3>
+            <span class="badge badge-dev">Desenvolvimento</span>
+          </div>
+          <p>Objetivo: acelerar integração de ferramentas externas.</p>
+          <div class="prompt"><strong>Prompt:</strong> "Use a skill de mcp-builder para criar os arquivos base de um servidor MCP para consultar tickets internos."</div>
+          <div class="resultado"><strong>Resultado esperado:</strong> estrutura inicial com endpoints, validações e instruções de uso.</div>
+        </article>
+
+        <article class="exemplo">
+          <div class="topo">
+            <h3>Exemplo 10: Revisão técnica de conteúdo</h3>
+            <span class="badge badge-comms">Comunicação</span>
+          </div>
+          <p>Objetivo: adaptar linguagem de documentação para público não técnico.</p>
+          <div class="prompt"><strong>Prompt:</strong> "Use a skill de doc-coauthoring para simplificar esta documentação sem perder precisão técnica."</div>
+          <div class="resultado"><strong>Resultado esperado:</strong> versão mais clara, com exemplos e menor ambiguidade.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="painel reveal" id="criacao-skill">
+      <h2>5) Criando sua skill do zero</h2>
+      <p class="intro">
+        Use o template como base e adapte para sua realidade. A regra principal: descrição clara de quando usar,
+        instruções objetivas e exemplos que eliminem ambiguidade.
+      </p>
+
+      <div class="grid-2">
+        <article class="box">
+          <h3>Estrutura mínima recomendada</h3>
+          <div class="code"><code>minha-skill/
+├── SKILL.md
+├── scripts/
+│   └── tarefa.ps1
+└── assets/
+    └── modelo.md</code></div>
+        </article>
+
+        <article class="box">
+          <h3>Checklist de qualidade</h3>
+          <ul>
+            <li>Descrição explica claramente quando ativar a skill.</li>
+            <li>Instruções em sequência lógica e sem contradições.</li>
+            <li>Exemplos cobrindo caso simples e caso real.</li>
+            <li>Limitações e suposições declaradas.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="code"><code>---
+name: revisao-pr-time
+description: Use esta skill quando o objetivo for revisar pull requests com foco em riscos, regressões e testes faltantes.
+---
+
+# Skill de Revisão de PR
+
+## Objetivo
+Padronizar revisões técnicas com foco em qualidade e clareza.
+
+## Fluxo
+1. Ler contexto da mudança e arquivos afetados.
+2. Identificar riscos funcionais e técnicos.
+3. Priorizar achados por severidade.
+4. Sugerir ajustes objetivos com exemplos.
+
+## Saída esperada
+- Lista de problemas por prioridade
+- Perguntas em aberto
+- Recomendações finais de ação</code></div>
+    </section>
+
+    <section class="painel reveal" id="boas-praticas">
+      <h2>6) Boas práticas para resultados melhores</h2>
+      <p class="intro">
+        A qualidade da resposta melhora quando a solicitação é específica e orientada a contexto.
+      </p>
+
+      <div class="comparacao">
+        <div>
+          <h3>Faça isso</h3>
+          <ul class="check">
+            <li>Declare objetivo, público e formato da saída.</li>
+            <li>Informe arquivos, pastas e restrições relevantes.</li>
+            <li>Peça critérios de qualidade explícitos.</li>
+            <li>Valide com um caso pequeno antes de escalar.</li>
+            <li>Peça revisão final com riscos e próximos passos.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Evite isso</h3>
+          <ul class="check erros">
+            <li>Prompt genérico sem contexto de negócio.</li>
+            <li>Solicitação longa sem estrutura de prioridade.</li>
+            <li>Esperar resposta final sem rodada de refinamento.</li>
+            <li>Misturar muitos objetivos em um único pedido.</li>
+            <li>Ignorar validação e teste da saída gerada.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="painel reveal" id="problemas">
+      <h2>7) Problemas comuns e como resolver</h2>
+      <p class="intro">
+        Se algo não sair como esperado, use a tabela abaixo para correção rápida.
+      </p>
+
+      <table class="tabela">
+        <thead>
+          <tr>
+            <th>Problema</th>
+            <th>Causa comum</th>
+            <th>Solução prática</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Saída muito genérica</td>
+            <td>Prompt sem contexto do projeto</td>
+            <td>Adicionar objetivo, público, formato e exemplos desejados.</td>
+          </tr>
+          <tr>
+            <td>Skill "não encaixa" na tarefa</td>
+            <td>Skill escolhida não cobre o cenário</td>
+            <td>Trocar de skill ou combinar com outra mais específica.</td>
+          </tr>
+          <tr>
+            <td>Resultado inconsistente</td>
+            <td>Instruções ambíguas no pedido</td>
+            <td>Quebrar em etapas e pedir saída por checklist.</td>
+          </tr>
+          <tr>
+            <td>Resposta extensa demais</td>
+            <td>Falta de limite de escopo</td>
+            <td>Definir tamanho esperado e foco da resposta.</td>
+          </tr>
+          <tr>
+            <td>Baixa aderência ao padrão do time</td>
+            <td>Sem referência de estilo interno</td>
+            <td>Fornecer exemplos e regras de escrita/código da equipe.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="painel reveal" id="faq">
+      <h2>8) FAQ rápido</h2>
+      <details>
+        <summary>Preciso usar todas as skills de uma vez?</summary>
+        <p>Não. O ideal é usar a skill mais específica para a tarefa atual e combinar com outra somente quando fizer sentido claro.</p>
+      </details>
+      <details>
+        <summary>Posso editar as skills para meu contexto?</summary>
+        <p>Sim. Esse é o objetivo: adaptar instruções, exemplos e templates para o seu domínio de negócio e seu padrão de qualidade.</p>
+      </details>
+      <details>
+        <summary>Como saber se uma skill ficou boa?</summary>
+        <p>Quando ela reduz retrabalho, gera respostas consistentes e facilita repetição do processo por outras pessoas do time.</p>
+      </details>
+      <details>
+        <summary>Qual a diferença entre template e spec?</summary>
+        <p>Template é o ponto de partida prático; spec é a referência formal de como a skill deve ser estruturada.</p>
+      </details>
+      <details>
+        <summary>Posso usar este projeto para treinar meu próprio padrão interno?</summary>
+        <p>Sim. Você pode clonar os exemplos, remover o que não usa e manter uma biblioteca própria alinhada ao seu processo.</p>
+      </details>
+    </section>
+
+    <section class="painel cta reveal">
+      <h2>Próximo passo recomendado</h2>
+      <p>
+        Escolha uma tarefa real do seu dia a dia, selecione uma skill relacionada e rode um piloto de 30 minutos.
+        Depois compare tempo, qualidade e retrabalho com o processo atual. Esse teste já mostra o valor do projeto na prática.
+      </p>
+      <div class="acoes" style="margin-top: 14px;">
+        <a class="btn btn-primario" href="#exemplos">Voltar para exemplos</a>
+        <a class="btn btn-secundario" href="#topo">Subir para o topo</a>
+      </div>
+    </section>
+
+    <footer>
+      SkillX • Guia prático em português • Atualizado para facilitar adoção rápida por times técnicos e não técnicos.
+    </footer>
+  </main>
+</body>
+</html>
