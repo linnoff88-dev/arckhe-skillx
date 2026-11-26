@@ -814,7 +814,7 @@
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="none"/>
       <xsd:enumeration value="line"/>
-      <xsd:enumeration value="lineMarker"/>
+      <xsd:enumeration value="lARCKHÉrker"/>
       <xsd:enumeration value="marker"/>
       <xsd:enumeration value="smooth"/>
       <xsd:enumeration value="smoothMarker"/>
